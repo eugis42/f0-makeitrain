@@ -1,11 +1,12 @@
 # Ⓕ MAKE IT RAIN
 
-Internal tool: crop a photo for **Portrait 1080×1350** + **Story 1080×1920**, then export silent rain MP4s (H.264, 10s @ 60fps).
+Crop a photo for **Portrait 1080×1350** + **Story 1080×1920**, then export silent rain MP4s (H.264, 10s @ 60fps).
 
-## Run
+**Production:** [https://rain.feelnoth.ing](https://rain.feelnoth.ing)
+
+## Run locally
 
 ```bash
-cd make
 npm install
 npm run dev
 ```
@@ -19,12 +20,22 @@ npm run preview
 
 ## Flow
 
-Upload → Crop (both formats) → Generate (preview encode) → Download (final export + randomise).
+Upload → Crop → Generate (preview encode) → Download (final export + randomise).
 
 Needs **WebGL2** + **WebCodecs H.264** (recent Chrome / Safari).
+
+## Deploy (Hetzner / feelnoth.ing)
+
+Same VPS as apex (`2.28.53.230`). Wildcard DNS at Hover already covers `rain.feelnoth.ing`.
+
+```bash
+npm run build
+rsync -av --delete dist/ root@2.28.53.230:/var/www/rain/
+```
+
+Nginx site: `/etc/nginx/sites-available/rain` → `/var/www/rain`. Certbot cert: `rain.feelnoth.ing`.
 
 ## Notes
 
 - Client-only. Max upload 20MB JPEG/PNG/WebP.
-- Rain engine forked from `launch-microsite/droplets.js` into `src/engine/` (RGB photo, seed, fixed-timestep export).
-- Microsite untouched.
+- Rain engine forked from FEELNOTHING launch microsite droplets into `src/engine/`.
