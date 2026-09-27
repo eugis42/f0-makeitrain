@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rain check</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 1.5rem;
+        background: #fff;
+        color: #000;
+      }
+      #host {
+        margin-top: 1rem;
+      }
+      .row {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+      .preview-demo {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .preview-demo video,
+      .preview-demo .box {
+        border: 1px solid #000;
+        background: #222;
+        display: block;
+      }
+      .box.portrait {
+        aspect-ratio: 4 / 5;
+        width: 11rem;
+      }
+      .box.story {
+        aspect-ratio: 9 / 16;
+        width: 8.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="meta">loading…</p>
+    <div class="row">
+      <div>
+        <p>Rain frame (Make engine)</p>
+        <div id="host"></div>
+      </div>
+      <div>
+        <p>Preview aspect boxes</p>
+        <div class="preview-demo">
+          <div>
+            <p>4:5</p>
+            <div class="box portrait"></div>
+          </div>
+          <div>
+            <p>9:16</p>
+            <div class="box story"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/rain-check.ts"></script>
+  </body>
+</html>
